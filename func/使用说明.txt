@@ -1,0 +1,60 @@
+1.目录结构及文件说明：
+base\list.h           列表类模板
+base\poly.cpp         函数表达式类源文件
+base\poly.h           函数表达式类头文件
+base\stack.h          栈类模板
+
+subconsole\debug\subconsole.exe       windows 控制台测试程序
+.\debug\func.exe                      windows 图形界面测试程序
+
+2.使用说明：
+    控制台测试程序和图形界面测试程序都是用VC2003建立的。核心的函数在 base 文件夹中。核
+心的类是 base\poly.cpp 中的 Poly 类，它的使用方法在 subconsole\subconsole.cpp 中有详细
+说明。控制台测试程序在命令提示符下运行一下，就可以看到输出结果了。图形界面测试程序操作
+步骤如下：
+     1)：在文本框中输入函数表达式；
+     2)：点击设置[函数表达式]按钮，将在列表框中看到函数表达式的详细信息。如果设置成功，
+         并且函数表达式中有变量，则[设置变量]按钮可用；如果设置成功，并且表达式中只有常
+         量没有变量，则[计算]按钮可用，点[计算]，将得到函数表达式的值。
+     3)：如需设置变量，点击一下[设置变量]按钮，将出现一个打开文件对话框。现在选中
+         vars.txt(存放有变量值的文件，其内容是一行以空格分隔的双精度数)，点[打开]按钮。
+     4)：如果变理设置成功，则[计算]按钮可用，点[计算]，将得到函数表达式的值。
+
+3.函数表达式示例：
+    程序支持以下形式的函数表达式，表达式可以由变量、常量或者数学函数组成。数学函数的参
+数可以是表达式：
+
+     表达式                                          组成
+     x1                                               变量
+     x1*x2                                            变量
+     x1+x2*x3/x4%x5-x6                                常量和变量
+     1                                                常量
+     1+2+3-4*5/7%8                                    常量
+     sin(x1)                                          数学函数，参数是单个变量组成的表达式
+     sin(x1+x2*x3/x4%x5-x6) + cos(x1+x2*x3/x4%x5-x6)  数学函数，参数是复杂的表达式
+     sin(1+2+3-4*5/7%8) * cos(1+2+3-4*5/7%8)          数学函数组成表达式
+     sin(1)                                           数学函数，参数是常量
+    等等。
+    注意程序不支持如下形式的表达式，这个表达式不能得到正确结果：
+     sin(x2+x1+x3+sin(x2))    // 参数中不能再出现数学函数调用
+    也就是说，在数学函数的参数中，不能再出现数学函数的调用（这个功能如果需要可以添加）。
+
+4.程序支持的数学函数，共有 15 个：
+
+     double  asin  (double);
+     double  sin   (double);
+     double  sinh  (double);
+     double  acos  (double);
+     double  cos   (double);
+     double  cosh  (double);
+     double  atan  (double);
+     double  atan2 (double, double);
+     double  tan   (double);
+     double  tanh  (double);
+     double  pow   (double, double);
+     double  sqrt  (double);
+     double  log   (double);
+     double  log10 (double);
+     double  fabs  (double);
+
+5.程序不接受以科学记数法表式的又精度数。
